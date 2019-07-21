@@ -1,0 +1,10 @@
+.wrap {
+    flex-grow: 1;
+    padding: 10px;
+    border-left: 1px solid rgba(32, 161, 92, 0.34);
+    cursor: pointer;
+}
+
+.wrap.editing {
+    cursor: text;
+}

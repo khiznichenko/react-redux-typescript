@@ -1,0 +1,9 @@
+.wrap {
+    padding: 60px 0 150px;
+}
+
+@media all and (max-width: 600px) {
+    .wrap {
+        padding-right: 10px;
+    }
+}
