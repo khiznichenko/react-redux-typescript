@@ -2,13 +2,13 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { addEntity, saveEntity } from '../../actions';
-import { startEditing } from '../../actions/uiActions';
-import { IAppState, IEntitiesData, IEntityData, IUIData } from '../../store/AppState';
-import Footer from '../footer/Footer';
-import Header from '../header/Header';
-import Layout from '../layout/Layout';
-import TimeLine from '../timeLine/TimeLine';
+import { addEntity, saveEntity } from '../actions';
+import { startEditing } from '../actions/uiActions';
+import { IAppState, IEntitiesData, IEntityData, IUIData } from '../store/AppState';
+import Footer from './footer/Footer';
+import Header from './header/Header';
+import Layout from './layout/Layout';
+import TimeLine from './timeLine/TimeLine';
 
 interface IAppStateProps {
     entities: IEntitiesData;
