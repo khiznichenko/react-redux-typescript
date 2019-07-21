@@ -1,6 +1,7 @@
 import * as moment from 'moment';
 import { EntitiesActions } from '../actions';
 import { TAppAction } from '../actions/TAppAction';
+import { WELCOME_ENTITY_TEXT } from '../constants';
 import { IEntitiesData } from '../store/AppState';
 
 const now = moment().format('x');
@@ -8,7 +9,7 @@ const initialState: IEntitiesData = {
     [now]: {
         id: now,
         lastEdited: now,
-        text: 'New timeline started.',
+        text: WELCOME_ENTITY_TEXT,
     },
 };
 

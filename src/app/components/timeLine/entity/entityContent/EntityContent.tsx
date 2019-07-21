@@ -1,6 +1,7 @@
 import { IEntityData } from 'app/store/AppState';
 import classNames from 'classnames';
 import * as React from 'react';
+
 import * as s from './EntityContent.css';
 
 interface IEntityContentProps {
@@ -32,6 +33,9 @@ class EntityContent extends React.Component<IEntityContentProps, IEntityContentS
     public componentDidUpdate(): void {
         if (this.props.isEditing && this.el) {
             this.el.focus();
+            if (this.props.isNewEntity) {
+                document.execCommand('selectAll', false);
+            }
         }
     }
 
@@ -40,11 +44,12 @@ class EntityContent extends React.Component<IEntityContentProps, IEntityContentS
             s.wrap,
             this.props.isEditing && s.editing,
         );
+        const text = this.state.text;
         return (
             <div
                 className={wrapClassNames}
                 contentEditable={this.props.isEditing}
-                dangerouslySetInnerHTML={{ __html: this.state.text }}
+                dangerouslySetInnerHTML={{ __html: text }}
                 onClick={this.handleClick}
                 onBlur={this.handleBlur}
                 ref={this.onRender}
@@ -59,19 +64,12 @@ class EntityContent extends React.Component<IEntityContentProps, IEntityContentS
     private handleClick() {
         if (!this.props.isEditing) {
             this.props.onStartEdit();
-            if (this.props.isNewEntity) {
-                this.setState({
-                    text: '',
-                });
-            }
         }
     }
 
     private handleBlur() {
-        const content = this.el && this.el.textContent;
-        if (content) {
-            this.props.onSave(content);
-        }
+        const content = (this.el && this.el.innerHTML) || '';
+        this.props.onSave(content);
     }
 }
 

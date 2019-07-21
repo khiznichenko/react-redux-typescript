@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { addEntity, deleteEntity, saveEntity } from '../actions';
 import { startEditing } from '../actions/uiActions';
+import { DEFAULT_ENTITY_TEXT } from '../constants';
 import { IAppState, IEntitiesData, IEntityData, IUIData } from '../store/AppState';
 import Footer from './footer/Footer';
 import Header from './header/Header';
@@ -28,7 +29,7 @@ const App: React.FC<TAppProps> = (props) => {
         props.addEntity({
             id: now,
             lastEdited: now,
-            text: 'Something happened...',
+            text: DEFAULT_ENTITY_TEXT,
         });
         window.scrollTo({
             behavior: 'smooth',
