@@ -3,6 +3,7 @@ import { IEntityData } from 'app/store/AppState';
 export enum EntitiesActions {
     ADD_ENTITY = 'ADD_ENTITY',
     SAVE_ENTITY = 'SAVE_ENTITY',
+    DELETE_ENTITY = 'DELETE_ENTITY',
 }
 
 interface IAddEntityAction {
@@ -29,6 +30,19 @@ export function saveEntity(payload: IEntityData) {
     };
 }
 
+interface IDeleteEntityAction {
+    payload: IEntityData['id'];
+    type: EntitiesActions.DELETE_ENTITY;
+}
+
+export function deleteEntity(payload: IEntityData['id']) {
+    return {
+        payload,
+        type: EntitiesActions.DELETE_ENTITY,
+    };
+}
+
 export type TEntitiesAction =
     IAddEntityAction
-    | ISaveEntityAction;
+    | ISaveEntityAction
+    | IDeleteEntityAction;

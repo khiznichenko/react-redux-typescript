@@ -31,6 +31,17 @@ export default function entitiesReducer(
             };
         }
 
+        case EntitiesActions.DELETE_ENTITY: {
+            const entityId = action.payload;
+            return {
+                ...state,
+                [entityId]: {
+                    ...state[entityId],
+                    isDeleted: true,
+                },
+            };
+        }
+
         default:
             return state;
     }

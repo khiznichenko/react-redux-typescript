@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { IEntitiesData, IEntityData, IUIData } from '../../store/AppState';
 import Entity from './entity/Entity';
+
 import * as s from './TimeLine.css';
 
 interface ITimeLineProps {
@@ -9,6 +10,7 @@ interface ITimeLineProps {
     nowEditing: IUIData['nowEditing'];
     onStartEdit(id: IEntityData['id']): void;
     onSave(data: IEntityData): void;
+    onDelete(id: IEntityData['id']): void;
 }
 
 const TimeLine: React.FC<ITimeLineProps> = (props) => {
@@ -20,9 +22,13 @@ const TimeLine: React.FC<ITimeLineProps> = (props) => {
         props.onSave(data);
     };
 
+    const handleDelete = (id: IEntityData['id']) => {
+        props.onDelete(id);
+    };
+
     const entities = _.values(props.entities).map((entity: IEntityData) => {
         const isEditing = entity.id === props.nowEditing;
-        return (
+        return !entity.isDeleted && (
             <Entity
                 key={entity.id}
                 id={entity.id}
@@ -31,6 +37,7 @@ const TimeLine: React.FC<ITimeLineProps> = (props) => {
                 lastEdited={entity.lastEdited}
                 onStartEdit={handleStartEdit}
                 onSave={handleSave}
+                onDelete={handleDelete}
             />
         );
     });

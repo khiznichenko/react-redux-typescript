@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { addEntity, saveEntity } from '../actions';
+import { addEntity, deleteEntity, saveEntity } from '../actions';
 import { startEditing } from '../actions/uiActions';
 import { IAppState, IEntitiesData, IEntityData, IUIData } from '../store/AppState';
 import Footer from './footer/Footer';
@@ -18,6 +18,7 @@ interface IAppDispatchProps {
     addEntity(data: IEntityData): void;
     saveEntity(data: IEntityData): void;
     startEditing(id: IEntityData['id']): void;
+    deleteEntity(id: IEntityData['id']): void;
 }
 type TAppProps = IAppStateProps & IAppDispatchProps;
 
@@ -43,6 +44,7 @@ const App: React.FC<TAppProps> = (props) => {
                 nowEditing={props.ui.nowEditing}
                 onStartEdit={props.startEditing}
                 onSave={props.saveEntity}
+                onDelete={props.deleteEntity}
             />
             <Footer onAddEntity={handleAddEntity}/>
         </Layout>
@@ -57,6 +59,7 @@ const mapState = (state: IAppState): IAppStateProps => {
 };
 const mapDispatch = (dispatch: Dispatch): IAppDispatchProps => bindActionCreators({
     addEntity,
+    deleteEntity,
     saveEntity,
     startEditing,
 }, dispatch);

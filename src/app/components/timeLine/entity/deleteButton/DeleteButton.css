@@ -1,0 +1,22 @@
+.wrap {
+    padding: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.button svg {
+    width: 16px;
+    height: 16px;
+    fill: gray;
+}
+
+.button:hover svg {
+    fill: black;
+}

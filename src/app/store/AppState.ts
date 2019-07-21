@@ -11,6 +11,7 @@ export interface IEntityData {
     id: string; // timestamp
     text: string;
     lastEdited: string; // timestamp
+    isDeleted?: boolean;
 }
 
 export interface IUIData {
