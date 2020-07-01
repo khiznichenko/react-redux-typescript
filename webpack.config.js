@@ -77,7 +77,7 @@ module.exports = {
       filename: '[hash].css',
       disable: !isProduction
     }),
-    new StyleLintPlugin({ files: '**/*.?(s)css' }),
+    new StyleLintPlugin({ files: 'src/**/*.?(s)css' }),
     new HtmlWebpackPlugin({
       template: 'src/assets/index.html',
       minify: {
